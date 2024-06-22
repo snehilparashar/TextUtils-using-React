@@ -29,25 +29,25 @@ export const Textform = (property) => {
   return (
     <>
     <div className="container">
-    <h3>{property.heading}</h3>
+    <h3 className='mb-3'>{property.heading}</h3>
     <div className="mb-3">
     <textarea className="form-control" value={text} 
     onChange={handleOnChang}
     id="myBox" rows="6"></textarea>
     </div>   
-    <button className="btn btn-primary mx-2"  
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-2"  
     onClick={handleClearText}>Clear Text</button>
-    <button className="btn btn-primary mx-2" 
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" 
     onClick={handleUpperCase}>Convert to UpperCase</button>
-    <button className="btn btn-primary mx-2"
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-2"
     onClick={handleLowerCase}>Convert to Lowercase</button>
-    <button className="btn btn-primary mx-2"
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-2"
     onClick={handleExtraSpaces}>Remove Extra Spaces</button>
     </div>
     <div className="container my-3">
         <h2>Your text summary</h2>
-        <p> {text.split(" ").length} words and {text.length} characters.</p>
-        <p> {text.split("").length * 0.008} will be the time taken to read this.</p>
+        <p> {text.split(/\s+/).filter((element)=>{return element.length !== 0}).length} words and {text.length} characters.</p>
+        <p> {text.split("").length * 0.008} seconds will be the time taken to read this.</p>
 
     </div>
     </>
